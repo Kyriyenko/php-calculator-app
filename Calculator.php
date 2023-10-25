@@ -13,21 +13,35 @@ class Calculator
     }
 
 
+    /**
+     * @return float|int
+     */
     public function addition(): float|int
     {
         return $this->firstNumber + $this->secondNumber;
     }
 
+    /**
+     * @return float|int
+     */
     public function subtraction(): float|int
     {
         return $this->firstNumber - $this->secondNumber;
     }
 
+    /**
+     * @return float|int
+     */
     public function multiplication(): float|int
     {
         return $this->firstNumber * $this->secondNumber;
     }
 
+    /**
+     * @return float|int
+     *
+     * NOTE: you can't divide by zero.
+     */
     public function division(): float|int
     {
         if ($this->secondNumber == 0) {

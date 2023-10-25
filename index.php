@@ -1,6 +1,6 @@
 <?php
 
-include 'Calculator.php';
+require_once 'Calculator.php';
 
 $calculator = new Calculator(8, 2);
 
