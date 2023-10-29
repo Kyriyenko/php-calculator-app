@@ -3,6 +3,6 @@ services:
   web:
     image: php:8.2-apache
     volumes:
-      - /var/www/practice/php/php-calculator-app:/var/www/html
+      - .:/var/www/html
     ports:
       - "8080:80"
