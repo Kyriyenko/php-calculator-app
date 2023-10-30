@@ -13,6 +13,11 @@ class Figure
         $this->validate();
     }
 
+    private function getDiameter(): float|int
+    {
+        return $this->radius * 2;
+    }
+
     /**
      * @return void
      * @throws Exception
@@ -44,7 +49,7 @@ class Figure
         $options = [
             'square' => "<div style='width: {$this->side}px; height: {$this->side}px; background-color: {$this->color};'></div>",
             'rectangle' => "<div style='width: {$this->width}px; height: {$this->height}px; background-color: {$this->color};'></div>",
-            'circle' => "<div style='width: {$this->radius}px; height: {$this->radius}px; background-color: {$this->color}; border-radius: 50%;'></div>",
+            'circle' => "<div style='width: {$this->getDiameter()}px; height: {$this->getDiameter()}px; background-color: {$this->color}; border-radius: 50%;'></div>",
         ];
 
         if (!key_exists($this->type, $options)) return '<div style="color: red">Невідома фігура</div>';
