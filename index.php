@@ -18,5 +18,6 @@ $jsonContent = $serializer->serialize($user, 'json');
 
 $user = $serializer->deserialize($jsonContent, User::class, 'json');
 
-dump($user);
 dump('JSON: ' . $jsonContent);
+
+dump($user);
