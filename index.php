@@ -1,66 +1,22 @@
-<div class="wrapper">
-    <form action="/" method="POST">
-        <h4>Квадрат</h4>
+<?php
 
-        <input type="hidden" name="figure_type" value="square">
+require __DIR__ . '/vendor/autoload.php';
 
-        <label for="side"></label>
-        <input id="side" name="side" type="number" min="1" placeholder="Введіть тут довжину сторони квадрата...">
+use Symfony\Component\Serializer\Encoder\{JsonEncoder, XmlEncoder};
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use App\User;
 
-        <label for="color"></label>
-        <input id="color" name="color" type="color">
+$encoders = [new XmlEncoder(), new JsonEncoder()];
+$normalizers = [new ObjectNormalizer()];
 
-        <input type="submit" value="намалювати">
-    </form>
+$serializer = new Serializer($normalizers, $encoders);
 
-    <form action="/" method="POST">
-        <h4>Прямокутник</h4>
+$user = new User();
 
-        <input type="hidden" name="figure_type" value="rectangle">
+$jsonContent = $serializer->serialize($user, 'json');
 
-        <label for="height"></label>
-        <input id="height" name="height" type="number" min="1" placeholder="висота">
+$user = $serializer->deserialize($jsonContent, User::class, 'json');
 
-        <label for="with"></label>
-        <input id="with" name="with" type="number" min="1" placeholder="ширина">
-
-        <label for="color"></label>
-        <input id="color" name="color" type="color">
-
-        <input type="submit" value="намалювати">
-    </form>
-
-    <form action="/" method="POST">
-        <h4>Коло</h4>
-        <input type="hidden" name="figure_type" value="circle">
-
-        <label for="radius"></label>
-        <input id="radius" name="radius" type="number" min="1" placeholder="радіус">
-
-        <label for="color"></label>
-        <input id="color" name="color" type="color">
-
-        <input type="submit" value="намалювати">
-    </form>
-
-    <hr>
-
-    <?php
-    require_once('Figure.php');
-
-    $with = $_REQUEST['with'] ?? null;
-    $height = $_REQUEST['height'] ?? null;
-    $side = $_REQUEST['side'] ?? null;
-    $color = $_REQUEST['color'] ?? null;
-    $radius = $_REQUEST['radius'] ?? null;
-    $type = $_REQUEST['figure_type'] ?? null;
-
-    if ($type && $color) {
-        $figure = new Figure($side, $with, $height, $radius, $color, $type);
-
-        echo $figure->renderFigure();
-        echo '<hr>';
-        echo $figure->calculate();
-    }
-    ?>
-</div>
+dump($user);
+dump('JSON: ' . $jsonContent);

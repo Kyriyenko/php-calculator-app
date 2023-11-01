@@ -1,0 +1,13 @@
+{
+    "require": {
+        "ramsey/uuid": "^4.7",
+        "larapack/dd": "1.*",
+        "symfony/serializer": "^6.3",
+        "symfony/property-access": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}

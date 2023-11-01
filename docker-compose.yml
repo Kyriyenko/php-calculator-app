@@ -6,3 +6,8 @@ services:
       - .:/var/www/html
     ports:
       - "8080:80"
+
+  composer:
+    image: composer
+    volumes:
+      - .:/var/www/html
