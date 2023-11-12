@@ -2,22 +2,14 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Symfony\Component\Serializer\Encoder\{JsonEncoder, XmlEncoder};
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
-use App\User;
+$formGenerator = new \App\FormGenerator();
 
-$encoders = [new XmlEncoder(), new JsonEncoder()];
-$normalizers = [new ObjectNormalizer()];
-
-$serializer = new Serializer($normalizers, $encoders);
-
-$user = new User();
-
-$jsonContent = $serializer->serialize($user, 'json');
-
-$user = $serializer->deserialize($jsonContent, User::class, 'json');
-
-dump('JSON: ' . $jsonContent);
-
-dump($user);
+echo $formGenerator->generateForm([
+    new \App\Elements\Checkbox('my_checkbox', 'is_checked', description: 'First checkbox'),
+    new \App\Elements\Checkbox('my_checkbox', 'is_checked', description: 'Second checkbox'),
+    new \App\Elements\Text('name', 'name', description: 'Name'),
+    new \App\Elements\Text('second_name', 'second_name', description: 'Second name'),
+    new \App\Elements\Text('comment', 'comment', description: 'Leave your comment here'),
+    new \App\Elements\Time('time', 'time', description: 'Time'),
+    new \App\Elements\Submit(value: 'confirm'),
+]);
