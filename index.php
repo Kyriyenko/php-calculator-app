@@ -2,14 +2,14 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-$formGenerator = new \App\FormGenerator();
+use App\Date;
 
-echo $formGenerator->generateForm([
-    new \App\Elements\Checkbox('my_checkbox', 'is_checked', description: 'First checkbox'),
-    new \App\Elements\Checkbox('my_checkbox', 'is_checked', description: 'Second checkbox'),
-    new \App\Elements\Text('name', 'name', description: 'Name'),
-    new \App\Elements\Text('second_name', 'second_name', description: 'Second name'),
-    new \App\Elements\Text('comment', 'comment', description: 'Leave your comment here'),
-    new \App\Elements\Time('time', 'time', description: 'Time'),
-    new \App\Elements\Submit(value: 'confirm'),
-]);
+$date = new Date(2001, 9, 22);
+$date2 = new Date(2004, 12, 22);
+
+
+dump('Is data the same: ' . $date->isDatesEqual($date2));
+dump('get format: ' . $date->format('Y-m-d H:i:s'));
+
+dump('Difference: ');
+var_dump($date->getDifference($date2));
