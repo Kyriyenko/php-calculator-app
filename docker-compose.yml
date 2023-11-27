@@ -1,13 +1,23 @@
 version: '3'
-services:
-  web:
-    image: php:8.2-apache
-    volumes:
-      - .:/var/www/html
-    ports:
-      - "8080:80"
 
-  composer:
-    image: composer
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
     volumes:
-      - .:/var/www/html
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+      - "8876:80"
+    container_name: app_nginx
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    volumes:
+      - ./:/var/www
+    container_name: app
