@@ -11,7 +11,7 @@ class Checkbox extends Element
 
     public function render(): string
     {
-        $element = "<div>
+        $element = "<div class='mb-3'>
                <input type='$this->type' id='$this->id' name='$this->name' />";
 
         if ($this->description !== '') {

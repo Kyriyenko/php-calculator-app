@@ -4,14 +4,13 @@ namespace App\Elements;
 
 use App\Element;
 
-class Text extends Element
+class Password extends Element
 {
-
-    private string $type = 'text';
+    private string $type = 'password';
 
     public function render(): string
     {
-        $element = "<div class='mb-3'>
+        $element = "<div class='mb-3'> 
                <input type='$this->type' id='$this->id' name='$this->name' />";
 
         if ($this->description !== '') {

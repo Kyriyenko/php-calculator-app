@@ -4,10 +4,10 @@ namespace App\Elements;
 
 use App\Element;
 
-class Text extends Element
+class Email extends Element
 {
 
-    private string $type = 'text';
+    private string $type = 'email';
 
     public function render(): string
     {
